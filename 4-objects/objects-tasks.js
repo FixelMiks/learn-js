@@ -124,3 +124,71 @@ let ladder = {
 };
 
 ladder.up().up().down().showStep().down().showStep();
+
+// study the code
+
+console.log(this);
+
+const test = {
+  prop: "Samat",
+  func: function () {
+    return this.prop;
+  },
+};
+
+console.log(test.func()); // Samat
+
+const test2 = {
+  prop: this,
+  func: function () {
+    return this.prop;
+  },
+};
+
+console.log(test2.func()); // windows
+
+function test3() {
+  return this;
+}
+
+test3() === window; // true
+
+function test4() {
+  "use strict";
+  return this;
+}
+
+f2() === undefined; // true
+
+const test5 = {
+  name: "Aboba",
+  test5: () => {
+    return this.name;
+  },
+};
+
+console.log(test5.test5()); // empty
+
+var name = "Samat";
+
+function testFunc6() {
+  return this.name;
+}
+
+testFunc6(); // Samat
+
+const testName = "Samat";
+
+function testFunc7() {
+  return this.name;
+}
+
+testFunc7(); // ''
+
+const testFunc8 = {
+  x: function () {
+    function Aboba() {
+      return this.x;
+    }
+  },
+};
