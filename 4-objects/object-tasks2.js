@@ -55,3 +55,22 @@ accumulator.read();
 accumulator.read();
 
 alert(accumulator.value);
+
+// learning code
+//
+const obj1 = { fruit: "apple" };
+const obj2 = { fruit: "banana" };
+
+const obj3 = obj1 + obj2; // [object Object][object Object]
+//
+const obj4 = {};
+const anotherObj = {};
+
+alert(obj4); // вывод [object Object]
+
+anotherObj[obj4] = 123; // используем объект в качестве ключа
+
+console.log(anotherObj); // {[object Object]: 123}
+console.log(typeof anotherObj[obj4]); // number
+console.log(Boolean(anotherObj)); // true
+//
