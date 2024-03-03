@@ -31,6 +31,33 @@ let sum = 0.1 + 0.2;
 console.log(+sum.toFixed(2)); // 0.3
 console.log(1e500); // Infinity
 
+const technologies = [
+  { name: "AI", popularity: 90 },
+  { name: "Blockchain", popularity: 85 },
+  { name: "Quantum Computing", popularity: 78 },
+  { name: "AR/VR", popularity: 82 },
+  { name: "5G", popularity: 88 },
+];
+
+const popularTechnologies = technologies.filter(
+  (technologie) => technologie.popularity > 80
+);
+let summ = 0;
+
+const maxPopularity = popularTechnologies.forEach(
+  (tech) => (summ += tech.popularity)
+);
+const averagePopularity = summ / popularTechnologies.length;
+
+console.log(
+  "Trending technologies with popularity above 80:",
+  popularTechnologies
+);
+console.log(
+  "Average popularity score of popular technologies:",
+  averagePopularity
+);
+
 // tasks 5.2
 
 // task 1
