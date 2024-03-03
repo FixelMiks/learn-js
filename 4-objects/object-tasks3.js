@@ -31,6 +31,19 @@ let sum = 0.1 + 0.2;
 console.log(+sum.toFixed(2)); // 0.3
 console.log(1e500); // Infinity
 
+let num1 = 1.23456;
+console.log(num1.toFixed(0)); // 1
+console.log(num1.toFixed(-2)); // error
+
+let str = "Привет";
+alert(str.toUpperCase()); // ПРИВЕТ
+console.log(str); // Привет
+let billion1 = 1000000000;
+let billion2 = 1_000_000_000;
+let billion3 = 1e9;
+console.log(billion1 === billion2); // true
+console.log(billion1 === billion3); // true
+
 const technologies = [
   { name: "AI", popularity: 90 },
   { name: "Blockchain", popularity: 85 },
