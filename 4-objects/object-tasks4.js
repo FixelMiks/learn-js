@@ -47,3 +47,72 @@ const extractCurrencyValue = (str) => {
 };
 
 extractCurrencyValue("$120");
+
+// tasks 5.4
+
+// task 1
+let fruits = ["Яблоки", "Груша", "Апельсин"];
+
+// добавляем новое значение в "копию"
+let shoppingCart = fruits;
+shoppingCart.push("Банан");
+
+// что в fruits?
+alert(fruits.length); // 4
+
+// task 2
+const styles = ["Джаз", "Блюз"];
+
+styles.push("Рок-н-ролл");
+
+styles[Math.trunc(styles.length / 2)] = "Классика";
+
+console.log(styles.shift());
+
+styles.unshift("Рэп", "Регги");
+
+// task 3
+let arr = ["a", "b"];
+
+arr.push(function () {
+  alert(this);
+});
+
+arr[2](); // выведет весь массив, т.к. массив является особым типом объекта
+
+// task 4
+const sumInput = () => {
+  const array = [];
+  while (true) {
+    const value = prompt("Введите значение", 0);
+    if (value === "" || value === null || isNaN(value)) {
+      console.log("Done");
+      break;
+    } else {
+      array.push(+value); // сделать цикл запроса prompt, пока занчение не станет null
+    }
+  }
+  let sum = 0;
+  for (num of array) {
+    sum += num;
+  }
+  console.log(array);
+  console.log(sum);
+};
+
+sumInput();
+
+// task 5
+const getMaxSubSum = (arr) => {
+  let maxSum = 0;
+  let sumNum = 0;
+
+  for (num of arr) {
+    sumNum += num;
+    maxSum = Math.max(maxSum, sumNum);
+    if (sumNum < 0) {
+      sumNum = 0;
+    }
+  }
+  return maxSum;
+};
