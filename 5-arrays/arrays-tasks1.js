@@ -140,6 +140,58 @@ shuffle(arrRandom);
 console.log(arrRandom);
 
 // task 11
+let vasyaFour = { name: "Вася", age: 25 };
+let petyaFour = { name: "Петя", age: 30 };
+let mashaFour = { name: "Маша", age: 29 };
+
+let arrUsers = [vasyaFour, petyaFour, mashaFour];
+
+const getAverageAge = (users) => {
+  const sumAges = users.reduce((acc, user) => {
+    acc += user.age;
+    return acc;
+  }, 0);
+  return sumAges / users.length;
+};
+
+getAverageAge(arrUsers);
+
+// task 12
+function unique(arr) {
+  return arr.filter((elem, index) => arr.indexOf(elem) === index);
+}
+
+let strings = [
+  "кришна",
+  "кришна",
+  "харе",
+  "харе",
+  "харе",
+  "харе",
+  "кришна",
+  "кришна",
+  ":-O",
+];
+
+console.log(unique(strings)); // кришна, харе, :-O
+
+// task 13
+let usersFromServer = [
+  { id: "john", name: "John Smith", age: 20 },
+  { id: "ann", name: "Ann Smith", age: 24 },
+  { id: "pete", name: "Pete Peterson", age: 31 },
+];
+
+const groupById = (arr) => {
+  return arr.reduce((acc, user) => {
+    acc[user.id] = user;
+    return acc;
+  }, {});
+};
+
+let usersById = groupById(usersFromServer);
+
+console.log(usersById);
 
 // Live Coding
 
