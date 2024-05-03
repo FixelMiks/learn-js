@@ -193,6 +193,28 @@ let usersById = groupById(usersFromServer);
 
 console.log(usersById);
 
+// tasks 5.7
+// task 1
+const unique = (arr) => {
+  return [...new Set(arr)];
+};
+
+let someValues = [
+  "Hare",
+  "Krishna",
+  "Hare",
+  "Krishna",
+  "Krishna",
+  "Krishna",
+  "Hare",
+  "Hare",
+  ":-O",
+];
+
+console.log(unique(someValues)); // Hare,Krishna,:-O
+
+// task 2
+
 // Live Coding
 
 // 1. Возвращает результат шаблона строки и заданных параметров firstName и LastName.
