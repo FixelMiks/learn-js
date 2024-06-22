@@ -78,3 +78,20 @@ function printListRecursion2(list) {
 }
 
 printListRecursion2(list);
+
+// learn code
+const recursion = (x, n) => {
+  if (n == 0) {
+    return x;
+  } else {
+    return n * recursion(x, n - 1);
+  }
+};
+
+// recursion(2, 3)
+// 1) recursion(2, 2)
+// 2) recursion(2, 1)
+// 3) recursion(2, 0)
+// 4) return 2
+// 5) return 4
+// 6) return 8
