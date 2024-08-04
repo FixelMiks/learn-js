@@ -144,3 +144,44 @@ function makeArmy() {
 
   return shooters;
 }
+
+// learn code
+// Глобальная область видимости
+
+let number = 213;
+
+function printNumber(operand) {
+  // Область видимости функции printNumber
+  let color = "#f5f5f5";
+  console.log(number + operand);
+
+  function printColor() {
+    // Область видимости функции printColor
+    console.log(color);
+  }
+
+  printColor();
+}
+
+console.log(number);
+console.log(printNumber(312));
+
+// Переменна color не доступна в глобальной области видимости
+console.log(color);
+
+// Функция printColor не доступна в глобальной области видимости
+console.log(printColor());
+
+// Замыкание
+function main() {
+  let say = "I'am secondary function";
+
+  function secondary() {
+    console.log(say);
+  }
+  // secondary()
+  return secondary;
+}
+
+const hi = main();
+hi();
