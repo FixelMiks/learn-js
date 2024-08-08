@@ -102,7 +102,7 @@ let arr = [1, 2, 3, 4, 5, 6, 7];
 
 function inBetween(a, b) {
   return function (c) {
-    return c >= a && x <= c;
+    return c >= a && c <= b;
   };
 }
 
