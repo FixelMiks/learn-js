@@ -79,18 +79,113 @@ f("a");
 setTimeout(() => f("b"), 200);
 setTimeout(() => f("c"), 500);
 
-// task 4 (доделать)
-function throttle(func, time) {
-  let timerId;
-  if (timerId === undefined) {
-    return function (...args) {
-      func.apply(this, args);
-    };
+// task 4 (busted)
+function throttle(func, ms) {
+  let isThrottled = false;
+  let savedArgs;
+  let savedThis;
+
+  function wrapper() {
+    if (isThrottled) {
+      // запоминаем последние аргументы для вызова после задержки
+      savedArgs = arguments;
+      savedThis = this;
+      return;
+    }
+
+    // в противном случае переходим в состояние задержки
+    func.apply(this, arguments);
+
+    isThrottled = true;
+
+    // настройка сброса isThrottled после задержки
+    setTimeout(function () {
+      isThrottled = false;
+      if (savedArgs) {
+        // если были вызовы, savedThis/savedArgs хранят последний из них
+        // рекурсивный вызов запускает функцию и снова устанавливает время задержки
+        wrapper.apply(savedThis, savedArgs);
+        savedArgs = savedThis = null;
+      }
+    }, ms);
   }
-  return function (...args) {
-    setTimeout(() => {
-      clearTimeout(timerId);
-      func.apply(this, args);
-    }, time);
-  };
+
+  return wrapper;
 }
+
+// tasks 6.10
+// task 1
+function f() {
+  alert(this); // null
+}
+
+let user = {
+  g: f.bind(null),
+};
+
+user.g();
+
+// task 2
+function f() {
+  alert(this.name);
+}
+
+f = f.bind({ name: "Вася" }).bind({ name: "Петя" });
+
+f(); // Вася
+
+// task 3
+function sayHi() {
+  alert(this.name);
+}
+sayHi.test = 5;
+
+let bound = sayHi.bind({
+  name: "Вася",
+});
+
+alert(bound.test); // undefined
+
+// task 4
+function askPassword(ok, fail) {
+  let password = prompt("Password?", "");
+  if (password == "rockstar") ok();
+  else fail();
+}
+
+let userVasya = {
+  name: "Вася",
+
+  loginOk() {
+    alert(`${this.name} logged in`);
+  },
+
+  loginFail() {
+    alert(`${this.name} failed to log in`);
+  },
+};
+
+askPassword(
+  userVasya.loginOk.bind(userVasya),
+  userVasya.loginFail.bind(userVasya)
+);
+
+// task 5
+function askPassword(ok, fail) {
+  let password = prompt("Password?", "");
+  if (password == "rockstar") ok();
+  else fail();
+}
+
+let userJohn = {
+  name: "John",
+
+  login(result) {
+    alert(this.name + (result ? " logged in" : " failed to log in"));
+  },
+};
+
+askPassword(
+  userJohn.login.bind(userJohn, true),
+  userJohn.login.bind(userJohn, false)
+);
