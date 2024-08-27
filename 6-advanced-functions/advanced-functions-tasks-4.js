@@ -33,6 +33,80 @@ multiply(3, null);
 multiply("", 4);
 // TypeError: Argument cannot be a non-integer
 
+const obj123 = {
+  biba: "boba",
+};
+
+function foo() {
+  "use strict";
+  console.log(this.biba);
+}
+
+function spyBiba(f) {
+  return f.apply(obj);
+}
+
+let con = spyBiba(foo); // second arg is missing
+con(); // ReferenceError: obj is not defined
+
+// Live Coding
+// Создайте функцию isAlt(), которая принимает строку в качестве аргумента и проверяет,
+// находятся ли гласные (a, e, i, o, u) и согласные в чередующемся порядке.
+
+function isAlt(word) {
+  const vowels = "aeiou";
+
+  for (let i = 1; i < word.length; i++) {
+    const currVowel = vowels.includes(word[i]);
+    const preVowel = vowels.includes(word[i - 1]);
+
+    if (currVowel === preVowel) {
+      return false;
+    }
+  }
+  return true;
+}
+
+console.log(isAlt("amazon")); // true
+console.log(isAlt("apple")); // false
+console.log(isAlt("banana")); // true
+
+// Напишите функцию, которая возвращает количество символов,
+// которые нужно удалить, чтобы получить строку без последовательных повторений.
+
+function countRepeats(str) {
+  let counter = 0;
+  for (let i = 1; i < str.length; i++) {
+    if (str[i] === str[i - 1]) {
+      counter++;
+    }
+  }
+  return counter;
+}
+
+console.log(countRepeats("AABCCD")); // 2
+console.log(countRepeats("AABCCDA")); // 2
+console.log(countRepeats("AaBBCCC")); // 3
+
+// Заполните решение так,
+// чтобы функция разбивала верблюжью оболочку, используя пробел между словами.
+
+function solution(string) {
+  let spaceVerblud = "";
+  for (let i = 0; i < string.length; i++) {
+    if (string[i] === string[i].toUpperCase()) {
+      spaceVerblud += " " + string[i];
+    } else {
+      spaceVerblud += string[i];
+    }
+  }
+  return spaceVerblud;
+}
+
+console.log(solution(""));
+console.log(solution("camelCasing")); // "camel Casing"
+console.log(solution("camelCasingTest")); // "camel Casing Test"
+
 // tasks 6.9
 // task 1
 function spy(func) {
