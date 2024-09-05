@@ -1,11 +1,10 @@
-Function.prototype.myBind = function (context, ...args) {
-  const calledFn = this; // сохраняю ссылку на функцию, к которой вызывается myBind;
+function myBind(func, context, ...args) {
   return function (...newArgs) {
     // возвращаю новую функцию с дополнительными аргументами
-    return calledFn.apply(context, [...args, ...newArgs]); // вызываю исходную функцию,
+    return func.apply(context, [...args, ...newArgs]); // вызываю исходную функцию,
     // устанавливаю её this с помощью apply и передаю объединённые аргументы
   };
-};
+}
 
 function log(text1, text2) {
   console.log(this.name, text1, text2);
