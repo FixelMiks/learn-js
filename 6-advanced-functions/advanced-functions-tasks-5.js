@@ -56,3 +56,22 @@ function showThis() {
 
 const boundFunc = showThis.bind();
 boundFunc(); // undefined, без "use strict" будет undefined
+
+const obj1 = { name: "biba" };
+const obj2 = { name: "boba" };
+const obj3 = { name: "baby" };
+
+function showName() {
+  console.log(this.name);
+}
+
+const one = showName.bind(obj1); // Привязываем к obj1
+const two = one.bind(obj2); // Пытаемся привязать к obj2
+const three = two.bind(obj3); // Пытаемся привязать к obj3
+
+three(); // 'Obj1'
+
+const obj11 = { name: "biba" };
+const obj22 = { name: "boba" };
+
+const oneOne = showName.apply(obj11).apply(obj22); // Error
